@@ -1,15 +1,15 @@
+import SearchBar from "./SearchBar";
+
 const Navbar = ({ onAddClick, onSearch }) => {
   return (
-    <nav>
-      <h2>Task Manager</h2>
+    <nav className="navbar glass">
+      <h2 className="brand">
+        <span className="brand-dot" /> Task<span>Flow</span>
+      </h2>
 
-      <input
-        type="text"
-        placeholder="Search task..."
-        onChange={(e) => onSearch(e.target.value)}
-      />
+      <SearchBar onSearch={onSearch} />
 
-      <button onClick={onAddClick}>Add Task</button>
+      <button className="btn-primary" onClick={onAddClick}>+ Add Task</button>
     </nav>
   );
 };
