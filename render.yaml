@@ -1,0 +1,19 @@
+# Render blueprint — backend deploy config.
+# Render dashboard -> New -> Blueprint -> repo select karo, baaki auto ho jaata hai.
+
+services:
+  - type: web
+    name: taskflow-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Apni Netlify site URL yahan (dashboard mein) daalo —
+      # comma-separated multiple origins allowed.
+      - key: CORS_ORIGINS
+        sync: false
