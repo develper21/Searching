@@ -69,10 +69,13 @@ Repo push karne ke baad:
 
 | File | Kahan | Kab use | Git? |
 |---|---|---|---|
-| `.env.example` | dono folders | template — copy karke `.env.local` banao | committed |
-| `.env.local` | dono folders | local dev | **git-ignored** |
-| `.env.production` | dono folders | production build (Vite inline karta hai) | committed (non-secret URLs) |
+| `.env.example` | dono folders | reference template — kaunse vars chahiye | committed |
+| `.env.local` | dono folders | local dev values | **git-ignored** |
+| `.env.production` | dono folders | production build (Vite inline karta hai) | **git-ignored** |
 
+- **Production values dashboards mein set hoti hain** — env files git mein nahi jaati:
+  - **Netlify**: Site settings → Environment variables → `VITE_API_URL=https://<render-url>`
+  - **Render**: Service → Environment → `CORS_ORIGINS=https://<netlify-url>`
 - **Frontend vars** `VITE_` prefix se shuru hone chahiye (Vite requirement).
 - **Backend** `dotenv` se `.env.local`/`.env.production` read karta hai; Render ka `PORT`/env isse override hota hai.
 - Values badalne ke baad frontend ka **rebuild/redeploy zaroori** hai (URL bundle mein bake hota hai).

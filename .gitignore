@@ -9,7 +9,8 @@ node_modules/
 
 # Local env overrides — kabhi commit mat karo
 .env.local
+.env.production
 .env.*.local
 
-# NOTE: .env.example aur .env.production committed hain (non-secret values:
-# URLs etc.). Secret kabhi ho to sirf .env.local / dashboard mein rakho.
+# NOTE: sirf .env.example committed hai (reference template). Real values
+# Netlify/Render dashboards ke Environment variables mein set karo.

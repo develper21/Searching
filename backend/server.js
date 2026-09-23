@@ -15,8 +15,11 @@ const express = require("express");
 const cors = require("cors");
 const { TaskSearchEngine, tokenize } = require("./search/engine");
 
-// .env.local / .env.production load karo (Render ka PORT env override karega — dotenv existing env ko override nahi karta)
-require("dotenv").config();
+// .env.local (dev, git-ignored) pehle load hota hai — .env.production baaki values fill karta hai.
+// Dashboard/hosting env vars (Render ka PORT, CORS_ORIGINS) in sab pe override hain,
+// kyunki dotenv existing process.env ko kabhi overwrite nahi karta.
+require("dotenv").config({ path: path.join(__dirname, ".env.local") });
+require("dotenv").config({ path: path.join(__dirname, ".env.production") });
 
 const DB_FILE = path.join(__dirname, "db.json");
 const PORT = Number(process.env.PORT) > 0 ? Number(process.env.PORT) : 5000;

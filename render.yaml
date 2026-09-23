@@ -7,12 +7,14 @@ services:
     runtime: node
     plan: free
     rootDir: backend
-    buildCommand: npm install
+    buildCommand: npm install && npm run build   # build script no-op hai, install zaroori
     startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 22   # Render ka latest Node (26) bhi chalega, par 22 LTS pin karna stable hai
       # Apni Netlify site URL yahan (dashboard mein) daalo —
       # comma-separated multiple origins allowed.
       - key: CORS_ORIGINS
