@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Learn React",
+      "description": "Basics of Nextjs",
+      "status": "In Progress"
+    },
+    {
+      "id": "35d4",
+      "title": "learn next.js",
+      "description": "basic of next.js",
+      "status": "Completed"
+    },
+    {
+      "id": "bc41",
+      "title": "Devops",
+      "description": "learn docker and ci/cd concept",
+      "status": "In Progress"
+    }
+  ]
+}
