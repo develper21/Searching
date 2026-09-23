@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Local env overrides — kabhi commit mat karo
+.env.local
+.env.*.local
+
+# NOTE: .env.example aur .env.production committed hain (non-secret values:
+# URLs etc.). Secret kabhi ho to sirf .env.local / dashboard mein rakho.
