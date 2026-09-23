@@ -1,0 +1,16 @@
+# Netlify config — repo connect karte hi ye sab auto-apply ho jaata hai.
+# Site settings mein manually kuch set karne ki zaroorat nahi.
+
+[build]
+  base = "frontend"          # repo ke andar frontend folder
+  command = "npm run build"
+  publish = "dist"           # base ke relative
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback — direct URL se aane pe bhi index.html serve ho
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
