@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "commonjs",
   "engines": {
-    "node": ">=18"
+    "node": ">=18 <=22"
   },
   "scripts": {
     "start": "node server.js",

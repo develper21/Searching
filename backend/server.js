@@ -209,6 +209,8 @@ const trendingQueries = {
   },
 };
 
-app.listen(PORT, () => {
-  console.log(`Task API + search engine running on http://localhost:${PORT}`);
+const HOST = "0.0.0.0";
+app.listen(PORT, HOST, () => {
+  console.log(`Task API + search engine running on http://${HOST}:${PORT}`);
 });
+
