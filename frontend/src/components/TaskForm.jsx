@@ -1,36 +1,32 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const EMPTY = { title: "", description: "", status: "Not Started" };
 
 const TaskForm = ({ onSave, selectedTask, onClose }) => {
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    status: "Not Started"
-  });
+  const [task, setTask] = useState(selectedTask || EMPTY);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    if (selectedTask) {
-      setTask(selectedTask);
-    }
-  }, [selectedTask]);
+    inputRef.current?.focus();
+    const onKey = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(task);
-    setTask({ title: "", description: "", status: "Not Started" });
-    onClose();
-  };
-
-  const handleClose = () => {
-    setTask({ title: "", description: "", status: "Not Started" });
-    onClose();
+    const title = task.title.trim();
+    if (!title) return;
+    onSave({ ...task, title });
   };
 
   return (
-    <div className="form-overlay" onClick={handleClose}>
-      <form onClick={(e) => e.stopPropagation()}>
+    <div className="form-overlay" onMouseDown={onClose}>
+      <form className="glass modal" onMouseDown={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
         <h3>{selectedTask ? "Edit Task" : "Add New Task"}</h3>
-        
+
         <input
+          ref={inputRef}
           type="text"
           placeholder="Task Title"
           value={task.title}
@@ -44,18 +40,18 @@ const TaskForm = ({ onSave, selectedTask, onClose }) => {
           onChange={(e) => setTask({ ...task, description: e.target.value })}
         />
 
-        <select
-          value={task.status}
-          onChange={(e) => setTask({ ...task, status: e.target.value })}
-        >
+        <select value={task.status} onChange={(e) => setTask({ ...task, status: e.target.value })}>
           <option value="Not Started">Not Started</option>
           <option value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
         </select>
 
-        <button type="submit">
-          {selectedTask ? "Update Task" : "Add Task"}
-        </button>
+        <div className="form-actions">
+          <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
+          <button type="submit" className="btn-primary">
+            {selectedTask ? "Update Task" : "Add Task"}
+          </button>
+        </div>
       </form>
     </div>
   );
